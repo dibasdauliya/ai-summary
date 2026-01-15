@@ -1,0 +1,15 @@
+{
+  "name": "ai-summary-monorepo",
+  "private": true,
+  "version": "1.0.0",
+  "description": "AI Summary Widget - Request AI summaries from various AI services",
+  "scripts": {
+    "build": "pnpm -r build",
+    "dev": "pnpm -r --parallel dev",
+    "lint": "pnpm -r lint",
+    "test": "pnpm -r test"
+  },
+  "keywords": ["ai", "summary", "widget", "chatgpt", "claude", "gemini", "perplexity", "grok"],
+  "author": "",
+  "license": "MIT"
+}
