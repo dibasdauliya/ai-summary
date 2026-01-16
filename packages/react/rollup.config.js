@@ -13,6 +13,8 @@ export default [
         file: 'dist/index.js',
         format: 'cjs',
         sourcemap: true,
+        exports: 'named',
+        interop: 'auto',
       },
       {
         file: 'dist/index.esm.js',

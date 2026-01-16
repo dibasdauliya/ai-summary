@@ -38,7 +38,7 @@ export const DEFAULT_SERVICES: AIService[] = [
     id: 'grok',
     name: 'Grok',
     icon: grokIcon,
-    baseUrl: 'https://grok.x.ai/',
+    baseUrl: 'https://grok.com/',
     queryParam: 'q',
   },
 ];

@@ -1,15 +1,16 @@
 {
   "name": "@ai-summary/core",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "AI Summary Widget - Request AI summaries from various AI services (Framework-agnostic)",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.esm.js",
       "require": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "default": "./dist/index.esm.js"
     },
     "./styles": "./dist/styles.css",
     "./styles.css": "./dist/styles.css",
