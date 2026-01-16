@@ -87,14 +87,6 @@ function App() {
 | `styles` | `AISummaryStyles` | `{}` | Custom style overrides |
 | `openInNewTab` | `boolean` | `true` | Open AI links in new tab |
 
-### Default Query
-
-```
-As a potential client, I want to concretely understand what I will receive with {subject}. 
-Detail step by step what the service includes: ...
-Explain it simply, as if you were describing the real experience of the service.
-```
-
 ### Custom Styling
 
 ```tsx
