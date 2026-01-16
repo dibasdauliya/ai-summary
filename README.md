@@ -121,13 +121,13 @@ import { AISummary, chatgptIcon, claudeIcon } from '@ai-summary/react';
 
 ## Supported AI Services
 
-| Service | Icon | URL |
-|---------|------|-----|
-| ChatGPT | OpenAI logo | chat.openai.com |
-| Claude | Anthropic logo | claude.ai |
-| Gemini | Google logo | gemini.google.com |
-| Perplexity | Perplexity logo | perplexity.ai |
-| Grok | X logo | grok.x.ai |
+| Service | URL |
+|---------|-----|
+| ChatGPT | chat.openai.com |
+| Claude | claude.ai |
+| Gemini | gemini.google.com |
+| Perplexity | perplexity.ai |
+| Grok | grok.x.ai |
 
 ## Development
 
