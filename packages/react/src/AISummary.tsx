@@ -90,8 +90,8 @@ const WIDGET_STYLES = `
   left: 50%;
   transform: translateX(-50%);
   padding: 6px 10px;
-  background-color: var(--ai-summary-text);
-  color: var(--ai-summary-bg);
+  background-color: #1a1a1a;
+  color: #ffffff;
   font-size: 12px;
   font-weight: 500;
   border-radius: 6px;
@@ -101,6 +101,16 @@ const WIDGET_STYLES = `
   transition: opacity 0.2s ease, visibility 0.2s ease;
   pointer-events: none;
   margin-bottom: 8px;
+}
+.ai-summary-widget[data-theme="dark"] .ai-summary-icon-link[data-tooltip]::after {
+  background-color: #ffffff;
+  color: #1a1a1a;
+}
+@media (prefers-color-scheme: dark) {
+  .ai-summary-widget[data-theme="auto"] .ai-summary-icon-link[data-tooltip]::after {
+    background-color: #ffffff;
+    color: #1a1a1a;
+  }
 }
 .ai-summary-icon-link[data-tooltip]:hover::after {
   opacity: 1;

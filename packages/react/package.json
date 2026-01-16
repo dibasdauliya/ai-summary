@@ -1,6 +1,6 @@
 {
   "name": "@ai-summary/react",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "AI Summary Widget React Component - Request AI summaries from various AI services",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
