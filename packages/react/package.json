@@ -1,6 +1,6 @@
 {
   "name": "@ai-summary/react",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "AI Summary Widget React Component - Request AI summaries from various AI services",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -20,7 +20,18 @@
     "dev": "rollup -c -w",
     "prepublishOnly": "npm run build"
   },
-  "keywords": ["ai", "summary", "widget", "chatgpt", "claude", "gemini", "perplexity", "grok", "react", "component"],
+  "keywords": [
+    "ai",
+    "summary",
+    "widget",
+    "chatgpt",
+    "claude",
+    "gemini",
+    "perplexity",
+    "grok",
+    "react",
+    "component"
+  ],
   "author": "",
   "license": "MIT",
   "peerDependencies": {
@@ -45,6 +56,11 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git+https://github.com/dibasdauliya/ai-summary.git",
+    "directory": "packages/react"
+  },
+  "homepage": "https://github.com/dibasdauliya/ai-summary#readme",
+  "bugs": {
+    "url": "https://github.com/dibasdauliya/ai-summary/issues"
   }
 }
