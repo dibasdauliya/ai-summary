@@ -1,8 +1,7 @@
 import type { AIService } from './types';
 import { chatgptIcon, claudeIcon, geminiIcon, perplexityIcon, grokIcon } from './icons';
 
-export const DEFAULT_QUERY = `As a potential client, I want to concretely understand what I will receive with {subject}. Detail step by step what the service includes: ...
-Explain it simply, as if you were describing the real experience of the service.`;
+export const DEFAULT_QUERY = `Give me a summary of {subject}. Explain what it is, what it does, and why someone might use it.`;
 
 export const DEFAULT_TITLE = 'Request an AI summary of';
 
