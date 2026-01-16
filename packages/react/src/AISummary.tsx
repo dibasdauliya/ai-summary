@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useEffect, useRef } from 'react';
 import {
   DEFAULT_SERVICES,
   DEFAULT_QUERY,
@@ -7,8 +7,117 @@ import {
   type AISummaryStyles,
 } from '@ai-summary/core';
 
-// Note: Users should import styles separately:
-// import '@ai-summary/core/styles';
+const WIDGET_STYLES = `
+.ai-summary-widget {
+  --ai-summary-bg: #f5f5f4;
+  --ai-summary-text: #1a1a1a;
+  --ai-summary-icon: #525252;
+  --ai-summary-icon-hover: #0a0a0a;
+  --ai-summary-radius: 16px;
+  --ai-summary-padding: 32px 40px;
+  --ai-summary-icon-size: 28px;
+  --ai-summary-font: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+.ai-summary-widget[data-theme="dark"] {
+  --ai-summary-bg: #1a1a1a;
+  --ai-summary-text: #f5f5f5;
+  --ai-summary-icon: #a3a3a3;
+  --ai-summary-icon-hover: #ffffff;
+}
+@media (prefers-color-scheme: dark) {
+  .ai-summary-widget[data-theme="auto"] {
+    --ai-summary-bg: #1a1a1a;
+    --ai-summary-text: #f5f5f5;
+    --ai-summary-icon: #a3a3a3;
+    --ai-summary-icon-hover: #ffffff;
+  }
+}
+.ai-summary-widget {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: var(--ai-summary-padding);
+  background-color: var(--ai-summary-bg);
+  border-radius: var(--ai-summary-radius);
+  font-family: var(--ai-summary-font);
+  box-sizing: border-box;
+}
+.ai-summary-widget * { box-sizing: border-box; }
+.ai-summary-title {
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--ai-summary-text);
+  margin: 0;
+  text-align: center;
+  letter-spacing: -0.02em;
+}
+.ai-summary-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.ai-summary-icon-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ai-summary-icon);
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+  padding: 8px;
+  border-radius: 8px;
+}
+.ai-summary-icon-link:hover {
+  color: var(--ai-summary-icon-hover);
+  transform: scale(1.1);
+}
+.ai-summary-icon-link:focus {
+  outline: 2px solid var(--ai-summary-icon-hover);
+  outline-offset: 2px;
+}
+.ai-summary-icon-link svg {
+  width: var(--ai-summary-icon-size);
+  height: var(--ai-summary-icon-size);
+}
+.ai-summary-icon-link[data-tooltip] { position: relative; }
+.ai-summary-icon-link[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 10px;
+  background-color: var(--ai-summary-text);
+  color: var(--ai-summary-bg);
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  pointer-events: none;
+  margin-bottom: 8px;
+}
+.ai-summary-icon-link[data-tooltip]:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+@media (max-width: 480px) {
+  .ai-summary-widget {
+    --ai-summary-padding: 24px 20px;
+    --ai-summary-icon-size: 24px;
+  }
+  .ai-summary-title { font-size: 20px; }
+  .ai-summary-icons { gap: 16px; }
+}
+`;
+
+// Track if styles have been injected
+let stylesInjected = false;
 
 export interface AISummaryProps {
   /** Subject name to display after title */
@@ -42,6 +151,17 @@ export const AISummary: React.FC<AISummaryProps> = ({
   openInNewTab = true,
   className = '',
 }) => {
+  // Inject styles on mount (client-side only)
+  useEffect(() => {
+    if (typeof document !== 'undefined' && !stylesInjected) {
+      const styleEl = document.createElement('style');
+      styleEl.setAttribute('data-ai-summary', 'true');
+      styleEl.textContent = WIDGET_STYLES;
+      document.head.appendChild(styleEl);
+      stylesInjected = true;
+    }
+  }, []);
+
   // Compute the final query
   const finalQuery = useMemo(() => {
     return query ?? DEFAULT_QUERY.replace('{subject}', subject);
